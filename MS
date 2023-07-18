@@ -1,0 +1,21 @@
+# Minesweeper Game
+import random
+ 
+# Function to create the board
+def create_board(rows, cols, num_mines):
+    # Initialize the board
+    board = []
+    for i in range(rows):
+        row = []
+        for j in range(cols):
+            row.append(0)
+        board.append(row)
+ 
+    # Add the mines
+    mines = 0
+    while mines < num_mines:
+        i = random.randint(0, rows - 1)
+        j = random.randint(0, cols - 1)
+        if board[i][j] != "X":
+            board[i][j] = "X"
+            mines += 1
