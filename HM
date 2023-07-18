@@ -1,0 +1,56 @@
+# Hangman Game
+import random
+ 
+# List of words
+words = ["python", "computer", "science", "programming", "mathematics", "engineer", "software"]
+ 
+# Function to choose a random word
+def choose_word(words):
+    return random.choice(words)
+ 
+# Function to play the game
+def play_game(word):
+    # Create the display word
+    display_word = "_" * len(word)
+    print(display_word)
+ 
+    # Set the number of guesses
+    guesses = 6
+ 
+    # Loop until the game is won or lost
+    while True:
+        # Get the user's guess
+        guess = input("Guess a letter: ")
+ 
+        # Check if the guess is in the word
+        if guess in word:
+            # Replace the underscores with the guessed letter
+            display_word = ""
+            for i in range(len(word)):
+                if word[i] == guess:
+                    display_word += guess
+                else:
+                    display_word += "_"
+            print(display_word)
+ 
+            # Check if the game is won
+            if display_word == word:
+                print("You win!")
+                break
+        else:
+            # Decrement the number of guesses
+            guesses -= 1
+            print("Wrong! You have", guesses, "guesses left.")
+ 
+            # Check if the game is lost
+            if guesses == 0:
+                print("You lose! The word was", word)
+                break
+ 
+# Main function
+def main():
+    word = choose_word(words)
+    play_game(word)
+ 
+if __name__ == "__main__":
+    main()
